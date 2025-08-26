@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upgrade to Premium - NotesApp</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .upgrade-container { 
+            max-width: 600px; 
+            margin: 50px auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .feature-list { background: #e6f3ff; padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .btn { padding: 15px 30px; background: #007cba; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 5px; }
+        .btn:hover { background: #005a87; }
+        .premium-badge { background: gold; color: #333; padding: 5px 10px; border-radius: 15px; font-weight: bold; }
+        .success-message { background: #d4edda; padding: 20px; border-radius: 5px; text-align: center; color: #155724; }
+        .back-link { text-decoration: none; color: #007cba; }
+        .pricing { text-align: center; margin: 30px 0; }
+        .current-status { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="upgrade-container">
+        <a href="{% url 'dashboard' %}" class="back-link">← Back to Dashboard</a>
+
+        <h1>Upgrade to Premium</h1>
+
+        {% if profile.is_premium %}
+            <div class="success-message">
+                <h2>You're already a <span class="premium-badge">Premium User</span>!</h2>
+                <p>Enjoy unlimited notes and premium features!</p>
+            </div>
+        {% else %}
+            <div class="current-status">
+                <h3>Current Plan: Basic User</h3>
+                <p>You've used {{ note_count }}/5 notes allowed on the basic plan.</p>
+            </div>
+
+            <div class="feature-list">
+                <h3>Premium Features:</h3>
+                <ul>
+                    <li><strong>Unlimited Notes</strong> - Create as many notes as you want</li>
+                </ul>
+            </div>
+
+            <div class="pricing">
+                <h3>Upgrade Now for Just 9.99/month!</h3>
+                <p>Join thousands of satisfied premium users</p>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        Upgrade to Premium
+                    </button>
+                </form>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 14px; color: #666; text-align: center;">
+                <p>By upgrading, you agree to our Terms of Service and Privacy Policy.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NotesApp - Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        .section { margin: 20px 0; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .note { margin: 15px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #007cba; border-radius: 4px; }
+        .shared-note { border-left-color: #28a745; }
+        .btn { padding: 10px 20px; margin: 5px; text-decoration: none; background: #007cba; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .btn:hover { background: #005a87; }
+        .premium { background: linear-gradient(45deg, #ffd700, #ffed4e); color: #333; padding: 3px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8em; }
+        .note-title { font-weight: bold; margin-bottom: 5px; }
+        .note-meta { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>NotesApp Dashboard</h1>
+        <p>Welcome, <strong>{{ user.username }}</strong>! 
+        {% if profile.is_premium %}
+            <span class="premium">Premium User</span>
+        {% else %}
+            Basic User ({{ note_count }}/5 notes used)
+        {% endif %}
+        </p>
+        {% if not profile.is_premium %}
+            <a href="{% url 'upgrade' %}" class="btn">Upgrade to Premium</a>
+        {% endif %}
+        <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Logout</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Your Notes</h2>
+        {% if can_create_notes %}
+            <a href="{% url 'create_note' %}" class="btn">Create New Note</a>
+        {% else %}
+            <span style="color: #999;">Note limit reached (5/5) - 
+            <a href="{% url 'upgrade' %}">Upgrade to Premium</a> for unlimited notes</span>
+        {% endif %}
+        <a href="{% url 'notes_list' %}" class="btn">View All Notes</a>
+
+        {% for note in notes %}
+        <div class="note">
+            <div class="note-title">
+                <a href="{% url 'note_detail' note.id %}" style="text-decoration: none; color: #333;">{{ note.title }}</a>
+            </div>
+            <div class="note-meta">
+                Created: {{ note.created_at|date:"M d, Y" }}
+                {% if note.is_shared %} | Shared{% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p>No notes yet. <a href="{% url 'create_note' %}">Create your first note.</a></p>
+        {% endfor %}
+    </div>
+
+    {% if shared_notes %}
+    <div class="section">
+        <h2>Notes Shared With You</h2>
+
+        {% for note in shared_notes %}
+        <div class="note shared-note">
+            <div class="note-title">
+                <a href="{% url 'note_detail' note.id %}" style="text-decoration: none; color: #333;">{{ note.title }}</a>
+            </div>
+            <div class="note-meta">
+                By: {{ note.owner.username }} | Created: {{ note.created_at|date:"M d, Y" }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
