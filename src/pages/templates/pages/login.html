@@ -2,51 +2,10 @@
 <html>
 <head>
     <title>Login - NotesApp</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .form-group { margin: 20px 0; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        .form-group input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid #ddd; 
-            border-radius: 5px; 
-            font-size: 16px;
-        }
-        .btn { 
-            width: 100%; 
-            padding: 15px; 
-            background: #007cba; 
-            color: white; 
-            border: none; 
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .btn:hover { background: #005a87; }
-        .logo { text-align: center; margin-bottom: 30px; }
-        .logo h1 { color: #333; margin: 0; }
-        .logo p { color: #666; margin: 10px 0 0 0; }
-        .error { color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 4px; margin: 15px 0; }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
-    <div class="login-container">
+<body class="gradient-bg-full p-40">
+    <div class="auth-container">
         <div class="logo">
             <h1>NotesApp</h1>
             <p>Your personal note taking companion</p>
@@ -65,16 +24,18 @@
                 {{ form.password }}
             </div>
 
-            {% if form.errors %}
+            {% if form.non_field_errors %}
                 <div class="error">
-                    {{ form.errors }}
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
             {% endif %}
 
-            <button type="submit" class="btn">Sign In</button>
+            <button type="submit" class="btn btn-full">Sign In</button>
         </form>
 
-        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; color: #666;">
+        <div class="divider text-center text-muted">
             <small>New to NotesApp? Contact your administrator for an account.</small>
         </div>
     </div>

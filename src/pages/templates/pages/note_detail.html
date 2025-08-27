@@ -2,24 +2,10 @@
 <html>
 <head>
     <title>{{ note.title }} - NotesApp</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .note-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .note-content { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .note-actions { background: white; padding: 15px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .btn { padding: 10px 20px; background: #007cba; color: white; text-decoration: none; border-radius: 4px; display: inline-block; margin: 5px; }
-        .btn:hover { background: #005a87; }
-        .btn-danger { background: #dc3545; }
-        .btn-danger:hover { background: #c82333; }
-        .btn-success { background: #28a745; }
-        .btn-success:hover { background: #218838; }
-        .note-meta { color: #666; margin: 10px 0; }
-        .shared-info { background: #e6f3ff; padding: 10px; border-radius: 4px; margin: 10px 0; }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container-md">
         <a href="{% url 'dashboard' %}" class="btn">← Back to Dashboard</a>
 
         <div class="note-header">
@@ -31,7 +17,7 @@
             </div>
 
             {% if note.is_shared %}
-            <div class="shared-info">
+            <div class="info-box">
                 <strong>This note is shared with:</strong> 
                 {% for user in note.shared_with.all %}
                     {{ user.username }}{% if not forloop.last %}, {% endif %}

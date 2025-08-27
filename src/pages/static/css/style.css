@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -10,6 +11,33 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.container-sm {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container-md {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-container,
+.white-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .header {
@@ -25,16 +53,28 @@ body {
     font-size: 2.5em;
 }
 
-.vulnerability {
-    background: #ffe6e6;
-    border-left: 4px solid #ff0000;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 4px;
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.vulnerability strong {
-    color: #d32f2f;
+.logo h1 {
+    color: #333;
+    margin: 0;
+}
+
+.logo p {
+    color: #666;
+    margin: 10px 0 0 0;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-full {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
 }
 
 .section {
@@ -51,6 +91,80 @@ body {
     padding-bottom: 10px;
 }
 
+.note,
+.note-item {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 4px solid #007cba;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-compact {
+    background: #f9f9f9;
+    padding: 15px;
+}
+
+.note.shared-note,
+.shared-note {
+    border-left-color: #28a745;
+}
+
+.note-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.note-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.note-title a:hover {
+    color: #007cba;
+}
+
+.note-meta {
+    color: #666;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.note-preview {
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid #dc3545;
+}
+
+.note-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-header,
+.note-actions {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-actions {
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -62,10 +176,22 @@ body {
     cursor: pointer;
     margin: 5px;
     transition: background-color 0.3s;
+    font-size: 14px;
 }
 
 .btn:hover {
     background: #005a87;
+}
+
+.btn-lg {
+    padding: 15px 30px;
+    font-size: 16px;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
 }
 
 .btn-danger {
@@ -82,6 +208,14 @@ body {
 
 .btn-success:hover {
     background: #218838;
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
 }
 
 .form-group {
@@ -108,50 +242,13 @@ body {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 150px;
 }
 
-.note-item {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-left: 4px solid #007cba;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.note-title {
-    font-size: 1.3em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.note-meta {
-    color: #666;
-    font-size: 0.9em;
-    margin: 5px 0;
-}
-
-.priority.high {
-    color: #dc3545;
-}
-
-.priority.medium {
-    color: #ffc107;
-}
-
-.priority.low {
-    color: #28a745;
-}
-
-.premium {
-    background: linear-gradient(45deg, #ffd700, #ffed4e);
-    color: #333;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 0.8em;
+.form-full input,
+.form-full textarea,
+.form-full select {
+    max-width: 100%;
 }
 
 .alert {
@@ -160,16 +257,137 @@ body {
     border-radius: 4px;
 }
 
-.alert-success {
+.alert-success,
+.success-message {
     background: #d4edda;
     border-left: 4px solid #28a745;
     color: #155724;
+    padding: 15px;
+    border-radius: 4px;
 }
 
-.alert-error {
+.alert-error,
+.error {
     background: #f8d7da;
     border-left: 4px solid #dc3545;
     color: #721c24;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    color: #856404;
+}
+
+.info-box {
+    background: #e6f3ff;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.feature-list {
+    background: #e6f3ff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.current-status {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.premium,
+.premium-badge {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #333;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.premium-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.vulnerability {
+    background: #ffe6e6;
+    border-left: 4px solid #ff0000;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+}
+
+.vulnerability strong {
+    color: #d32f2f;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #666;
+}
+
+.text-small {
+    font-size: 0.9em;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.p-40 {
+    padding: 40px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+}
+
+.divider {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.divider-sm {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #007cba;
+}
+
+.pricing {
+    text-align: center;
+    margin: 30px 0;
 }
 
 pre, code {
@@ -193,5 +411,10 @@ pre, code {
     .form-group textarea,
     .form-group select {
         max-width: 100%;
+    }
+
+    .auth-container {
+        margin: 20px;
+        padding: 20px;
     }
 }
